@@ -13,7 +13,9 @@ const io = new SocketServer(server, {
 });
 
 io.on("connection", (socket) => {
-  console.log("new user connected:", socket.id);
+  socket.on("recibirId", (antiguaLista) => {
+    socket.broadcast.emit("recibirId", antiguaLista)
+  })
 });
 
 app.use(cors());
